@@ -28,7 +28,7 @@ class TrainingController extends Controller
 
         $values =  $query->select('event', 'weight', 'number', 'set')->paginate(20);
 
-        return view('history.index', compact('values'));
+        return view('history.index', compact('values', 'date'));
     }
 
     /**
@@ -51,7 +51,7 @@ class TrainingController extends Controller
             'set' => $request->set,
         ]);
 
-        return to_route('history.index');
+        return to_route('create.index');
     }
 
     /**
