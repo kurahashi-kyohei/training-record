@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
 
 Route::get('/', function () {
-    return view('home');
-})->middleware(['auth', 'verified'])->name('home');
+    return view('welcome');
+});
 
 // Route::get('/create', function () {
 //     return view('create');
