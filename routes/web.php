@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
 
 
+if (env('APP_ENV') == 'production') {
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+}
+
 Route::get('/', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
