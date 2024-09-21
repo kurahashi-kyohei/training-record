@@ -10,9 +10,12 @@ if (env('APP_ENV') == 'production') {
 }
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
-
 
 Route::prefix('history')
     ->middleware(['auth', 'verified'])
