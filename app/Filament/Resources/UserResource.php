@@ -35,10 +35,10 @@ class UserResource extends Resource
                     ->password()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('admin')
-                    ->required()
-                    ->numeric()
-                    ->default(0),
+                // Forms\Components\TextInput::make('admin')
+                //     ->required()
+                //     ->numeric()
+                //     ->default(0),
             ]);
     }
 
@@ -53,9 +53,9 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('admin')
-                    ->numeric()
-                    ->sortable(),
+                // Tables\Columns\TextColumn::make('admin')
+                //     ->numeric()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
