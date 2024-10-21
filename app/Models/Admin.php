@@ -31,6 +31,6 @@ class Admin extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
+        return str_ends_with($this->email, 'admin@gmail.com') && $this->hasVerifiedEmail();
     }
 }
