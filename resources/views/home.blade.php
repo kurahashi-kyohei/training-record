@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="flex flex-col items-center gap-12">
+    <div class="flex flex-col items-center gap-4">
         <div class="bg-red-600 text-white font-bold m-2  py-3 px-6 text-2xl border rounded-lg">
             <a href="/create">本日の筋トレを追加する</a>
         </div>
