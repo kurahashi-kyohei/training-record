@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training;
+use App\Http\Requests\TrainingRequest;
 
 class TrainingController extends Controller
 {
@@ -42,7 +43,7 @@ class TrainingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TrainingRequest $request)
     {
         Training::create([
             'event' => $request->event,
@@ -50,6 +51,13 @@ class TrainingController extends Controller
             'number' => $request->number,
             'set' => $request->set,
         ]);
+
+        // $request->validate([
+        //     'event' =>['required'],
+        //     'weight' =>['required'],
+        //     'number' =>['required'],
+        //     'set' =>['required'],
+        // ]);
 
         return to_route('create.index');
     }
