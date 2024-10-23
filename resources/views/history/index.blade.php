@@ -24,7 +24,7 @@
           <td class="border-b-2 border-gray-200 px-4 py-3">{{$value->weight}}</td>
           <td class="border-b-2 border-gray-200 px-4 py-3">{{$value->number}}</td>
           <td class="border-b-2 border-gray-200 px-4 py-3 text-lg text-gray-900">{{$value->set}}</td>
-          {{-- <td class="border-b-2 border-gray-200 px-4 py-3 text-lg text-gray-900">{{$value->created_at->format('Y/m/d')}}</td> --}}
+          <div></div>
         </tr>
       </tbody>
       @endforeach
