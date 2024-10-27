@@ -52,14 +52,7 @@ class TrainingController extends Controller
             'set' => $request->set,
         ]);
 
-        // $request->validate([
-        //     'event' =>['required'],
-        //     'weight' =>['required'],
-        //     'number' =>['required'],
-        //     'set' =>['required'],
-        // ]);
-
-        return to_route('create.index');
+        return view('complete');
     }
 
     /**
