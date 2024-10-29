@@ -16,20 +16,11 @@ class TrainingController extends Controller
         return view('create');
     }
 
-    public function historyIndex()
+    public function index()
     {
-        $values = Training::all();
+        $values = Training::select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
         
         return view('history.index', compact('values'));
-    }
-
-    public function index(Request $request) {
-        $date = $request->date;
-        $query = Training::search($date);
-
-        $values =  $query->select('event', 'weight', 'number', 'set')->paginate(20);
-
-        return view('history.index', compact('values', 'date'));
     }
 
     /**
@@ -52,7 +43,7 @@ class TrainingController extends Controller
             'set' => $request->set,
         ]);
 
-        return view('complete');
+        return to_route('create.index')->with('successMessage', '登録が完了しました');
     }
 
     /**
@@ -64,9 +55,9 @@ class TrainingController extends Controller
         $date = $request->date;
         $query = Training::search($date);
 
-        $values =  $query->select('event', 'weight', 'number', 'set')->paginate(20);
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
 
-        return view('history.index', compact('values'));
+        return view('history.date', compact('values', 'date'));
     }
 
     /**

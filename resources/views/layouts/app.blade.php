@@ -18,17 +18,8 @@
         <div class="min-h-screen ">
             @include('layouts.navigation')
 
-            <!-- Page Heading -->
-            {{-- <!-- @isset($header)
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset --> --}}
-
             <!-- Page Content -->
-            <main class="flex justify-center items-center py-12 px-auto w-full">
+            <main class="flex justify-center items-center py-12 px-auto w-full relative">
                 {{ $slot }}
             </main>
         </div>
