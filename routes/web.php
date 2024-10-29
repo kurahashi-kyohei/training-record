@@ -23,7 +23,7 @@ Route::prefix('history')
     ->controller(TrainingController::class)
     ->group(function(){
         Route::get('/', 'index')->name('index');
-        Route::post('/show', 'show')->name('show');
+        Route::get('/show', 'show')->name('show');
 });
 
 Route::prefix('create')

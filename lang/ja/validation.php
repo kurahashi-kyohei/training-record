@@ -223,7 +223,7 @@ return [
         'month' => '月',
         'name' => '名前',
         'national_code' => '国コード',
-        'number' => '番号',
+        'number' => '回数',
         'password' => 'パスワード',
         'password_confirmation' => '確認用パスワード',
         'phone' => '電話番号',
@@ -256,6 +256,9 @@ return [
         'updated_at' => '更新日',
         'username' => 'ユーザー名',
         'year' => '年',
+        'event' => '種目名',
+        'weight' => '重量',
+        'set' => 'セット数',
     ],
 
 ];
