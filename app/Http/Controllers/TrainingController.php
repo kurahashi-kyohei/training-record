@@ -18,8 +18,9 @@ class TrainingController extends Controller
 
     public function index()
     {
-        $values = Training::select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
-        
+        $query = Training::Search();
+
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
         return view('history.index', compact('values'));
     }
 
@@ -36,7 +37,10 @@ class TrainingController extends Controller
      */
     public function store(TrainingRequest $request)
     {
+        $id = auth()->id();
+
         Training::create([
+            'user_id' => $id,
             'event' => $request->event,
             'weight' => $request->weight,
             'number' => $request->number,
@@ -53,7 +57,7 @@ class TrainingController extends Controller
     {
         // $values = Training::whereDate('created_at', '=', $request->date)->get();
         $date = $request->date;
-        $query = Training::search($date);
+        $query = Training::DateSearch($date);
 
         $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
 
