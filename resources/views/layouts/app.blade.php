@@ -14,12 +14,12 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased ">
         <div class="min-h-screen ">
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            <main class="flex justify-center items-center py-12 px-auto w-full relative">
+            <main class="flex justify-center py-12 px-auto w-full relative bg-gray-50 h-screen">
                 {{ $slot }}
             </main>
         </div>

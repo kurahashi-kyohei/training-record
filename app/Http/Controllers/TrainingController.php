@@ -20,7 +20,7 @@ class TrainingController extends Controller
     {
         $query = Training::Search();
 
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at', 'id')->paginate(20);
         return view('history.index', compact('values'));
     }
 
@@ -55,11 +55,10 @@ class TrainingController extends Controller
      */
     public function show(Request $request)
     {
-        // $values = Training::whereDate('created_at', '=', $request->date)->get();
         $date = $request->date;
         $query = Training::DateSearch($date);
 
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at', 'id')->paginate(20);
 
         return view('history.date', compact('values', 'date'));
     }
@@ -69,15 +68,29 @@ class TrainingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $value = Training::find($id);
+
+        return view('history.edit', compact('value'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TrainingRequest $request, string $id)
     {
-        //
+        $value = Training::find($id);
+
+        $date = $value->date;
+
+        $value->event = $request->event;
+        $value->weight = $request->weight;
+        $value->number = $request->number;
+        $value->set = $request->set;
+        $value->save();
+
+        $successMessage = '更新が完了しました';
+
+        return view('history.edit', compact('value'))->with('successMessage', '登録が完了しました');
     }
 
     /**
@@ -85,6 +98,14 @@ class TrainingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $value = Training::find($id);
+        $value->delete();
+
+        $date = $value->date;
+
+        $query = Training::DateSearch($date);
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at', 'id')->paginate(20);
+
+        return view('history.date', compact('values', 'date'));
     }
 }

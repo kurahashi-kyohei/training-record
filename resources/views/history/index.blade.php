@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="max-w-xl w-full overflow-auto">
+  <div class="max-w-2xl w-full overflow-auto">
     <form method="GET" action="{{route('history.show')}}" class="flex gap-4">
       <div class="flex gap-4 items-center">
         <input type="date" name="date" id="date" value="{{ old('date') }}">
@@ -15,7 +15,7 @@
           <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">回数</th>
           <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">セット数</th>
           <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">日付</th>
-          <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+          <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100"></th>
         </tr>
       </thead>
       @foreach ($values as $value)
@@ -26,7 +26,9 @@
           <td class="border-b-2 border-gray-200 px-4 py-3">{{$value->number}}</td>
           <td class="border-b-2 border-gray-200 px-4 py-3 text-lg text-gray-900">{{$value->set}}</td>
           <td class="border-b-2 border-gray-200 px-4 py-3 text-lg text-gray-900">{{$value->created_at->format('Y/m/d')}}</td>
-          <div></div>
+          <td class="border-b-2 border-gray-200 px-4 py-3">
+            <a href="{{ route('history.edit', ['id' => $value-> id]) }}" class="self-center text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 ">編集する</a>
+          </td>
         </tr>
       </tbody>
       @endforeach

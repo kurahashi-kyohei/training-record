@@ -24,6 +24,9 @@ Route::prefix('history')
     ->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/show', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/{id}', 'update')->name('update');
+        Route::post('/{id}/destroy', 'destroy')->name('destroy');
 });
 
 Route::prefix('create')
