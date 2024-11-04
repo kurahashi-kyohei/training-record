@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Training;
+use App\Models\Event;
 use App\Http\Requests\TrainingRequest;
 
 class TrainingController extends Controller
@@ -13,7 +14,9 @@ class TrainingController extends Controller
      */
     public function CreateIndex()
     {
-        return view('create');
+        $values = Event::all();
+
+        return view('create', compact('values'));
     }
 
     public function index()
