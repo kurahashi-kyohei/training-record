@@ -6,6 +6,8 @@
     </div> 
   @endif
 
+  <a href="{{ route('event.index')}}" class="mb-4 text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 absolute top-10 right-72">種目を追加する</a>
+
   <div class="py-12 ml-12 flex flex-col items-start gap-4">
     <form class="flex flex-col items-start gap-2" method="post" action="{{route('create.store')}}">
       @csrf
@@ -17,6 +19,9 @@
             <option value="ベンチプレス" @if( old('event') === 'ベンチプレス') selected @endif>ベンチプレス</option>
             <option value="スクワット" @if( old('event') === 'スクワット') selected @endif>スクワット</option>
             <option value="デットリフト" @if( old('event') === 'デットリフト') selected @endif>デットリフト</option>
+            @foreach ($values as $value)
+              <option value="{{ $value->name }}" @if( old('event') === '{{ $value->name }}') selected @endif>{{ $value->name }}</option>
+            @endforeach
           </select>
         </div>
         @error('event')
@@ -54,7 +59,7 @@
         @enderror
       </div>
 
-      <button class="self-center mb-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">登録</button>
+      <button class="self-center mb-4 mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">追加</button>
     </form>
   </div>
 </x-app-layout>

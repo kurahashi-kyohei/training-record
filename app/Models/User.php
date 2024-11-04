@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function trainings() {
         return $this->hasMany(Training::class);
     }
+
+    public function events() {
+        return $this->hasMany(Event::class);
+    }
 }

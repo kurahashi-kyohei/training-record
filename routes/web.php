@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\EventController;
 
 
 if (env('APP_ENV') == 'production') {
@@ -32,6 +33,15 @@ Route::prefix('create')
     ->controller(TrainingController::class)
     ->group(function(){
         Route::get('/', 'createIndex')->name('index');
+        Route::post('/', 'store')->name('store');
+});
+
+Route::prefix('event')
+    ->middleware(['auth', 'verified'])
+    ->name('event.')
+    ->controller(EventController::class)
+    ->group(function(){
+        Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
 });
 
