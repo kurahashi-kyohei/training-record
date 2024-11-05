@@ -15,10 +15,7 @@ class EventController extends Controller
 
     public function store(EventRequest $request)
     {
-        $id = auth()->id();
-
         Event::create([
-            'user_id' => $id,
             'name' => $request->name,
         ]);
 
