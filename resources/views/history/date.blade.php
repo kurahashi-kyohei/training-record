@@ -1,6 +1,6 @@
 <x-app-layout>
   <div class="max-w-xl w-full overflow-auto">
-    <form method="GET" action="{{route('history.show')}}" class="flex gap-4">
+    <form method="GET" action="{{route('history.date')}}" class="flex gap-4">
       <div class="flex gap-4 items-center">
         <input type="date" name="date" id="date" value="{{ $date }}">
       </div>

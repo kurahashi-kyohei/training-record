@@ -27,6 +27,11 @@ class Training extends Model
         $query->whereDate('created_at', $date);
     }
 
+    public function scopeEventSearch($query, $event) {
+        $query->where('user_id', '=', auth()->id());
+        $query->where('event', $event);
+    }
+
     public function user() {
         return $this->belongTo(User::class);
     }
