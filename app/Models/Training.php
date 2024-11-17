@@ -22,14 +22,15 @@ class Training extends Model
         $query->where('user_id', '=', auth()->id());
     }
 
-    public function scopeDateSearch($query, $date) {
+    public function scopeDateSearch($query, $date, $event) {
         $query->where('user_id', '=', auth()->id());
-        $query->whereDate('created_at', $date);
-    }
-
-    public function scopeEventSearch($query, $event) {
-        $query->where('user_id', '=', auth()->id());
-        $query->where('event', $event);
+        if($date) {
+            $query->whereDate('created_at', $date);
+        }
+        
+        if($event) {
+            $query->where('event', $event);
+        }
     }
 
     public function user() {

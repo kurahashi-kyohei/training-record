@@ -24,7 +24,7 @@ class TrainingController extends Controller
         $events = Event::all();
         $query = Training::Search();
 
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(10);
         return view('history.index', compact('values', 'events'));
     }
 
@@ -57,27 +57,16 @@ class TrainingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function date(Request $request)
+    public function show(Request $request)
     {
-        // $values = Training::whereDate('created_at', '=', $request->date)->get();
         $date = $request->date;
-        $query = Training::DateSearch($date);
-
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
-
-        return view('history.date', compact('values', 'date'));
-    }
-
-    public function event(Request $request)
-    {
-        // $values = Training::whereDate('created_at', '=', $request->date)->get();
         $select = $request->event;
         $events = Event::all();
-        $query = Training::EventSearch($select);
+        $query = Training::DateSearch($date, $select);
 
         $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
 
-        return view('history.event', compact('values', 'select', 'events'));
+        return view('history.show', compact('values', 'date', 'events', 'select'));
     }
 
     /**
