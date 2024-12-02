@@ -19,13 +19,26 @@ class TrainingController extends Controller
         return view('create', compact('values'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $events = Event::all();
-        $query = Training::Search();
+        $query = Training::query();
 
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(10);
-        return view('history.index', compact('values', 'events'));
+        $date = $request->date;
+        $select = $request->event;
+
+        $query->where('user_id', '=', auth()->id());
+        if($date) {
+            $query->whereDate('created_at', $date);
+        }
+        
+        if($select) {
+            $query->where('event', $select);
+        }
+
+        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(10);;
+
+        return view('history.index', compact('values', 'date', 'events', 'select'));
     }
 
     /**
@@ -59,14 +72,7 @@ class TrainingController extends Controller
      */
     public function show(Request $request)
     {
-        $date = $request->date;
-        $select = $request->event;
-        $events = Event::all();
-        $query = Training::DateSearch($date, $select);
-
-        $values =  $query->select('event', 'weight', 'number', 'set', 'created_at')->paginate(20);
-
-        return view('history.show', compact('values', 'date', 'events', 'select'));
+        
     }
 
     /**

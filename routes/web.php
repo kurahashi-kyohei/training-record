@@ -24,7 +24,6 @@ Route::prefix('history')
     ->controller(TrainingController::class)
     ->group(function(){
         Route::get('/', 'index')->name('index');
-        Route::get('/show', 'show')->name('show');
 });
 
 Route::prefix('create')
